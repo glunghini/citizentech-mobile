@@ -1,0 +1,21 @@
+node_modules/
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Pastas nativas geradas por "npx expo prebuild" (o código nativo próprio fica em modules/)
+android/
+ios/
+
+# Segredos e configuração local
+.env
+.env.local
+*.keystore
+!debug.keystore
+google-services.json
+
+*.apk
+*.aab
+*.log
+.DS_Store

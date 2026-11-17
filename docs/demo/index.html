@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portal de Demonstração — CitizenTech (página fictícia)</title>
+  <style>
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f2f4f7; color: #111; font-size: 18px; line-height: 1.45; }
+    .notice { background: #6b4500; color: #fff; padding: 10px 16px; font-size: 15px; text-align: center; }
+    header { background: #2e3a59; color: #fff; padding: 18px 16px; }
+    header h1 { margin: 0; font-size: 22px; }
+    header p { margin: 4px 0 0; font-size: 15px; opacity: .9; }
+    main { max-width: 560px; margin: 0 auto; padding: 18px 16px 48px; }
+    section { background: #fff; border-radius: 14px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+    h2 { margin: 0 0 12px; font-size: 22px; }
+    .stack { display: flex; flex-direction: column; gap: 12px; }
+    button { font: inherit; font-weight: 700; border: 0; border-radius: 10px; padding: 14px 16px; background: #2e3a59; color: #fff; cursor: pointer; text-align: left; }
+    button.secondary { background: #e4e8f0; color: #1d2740; }
+    button[aria-pressed="true"] { outline: 4px solid #1b5e20; background: #1b5e20; color: #fff; }
+    button:disabled { background: #b8bcc6; color: #4a4f5a; cursor: not-allowed; }
+    a { color: #1d4ed8; font-weight: 600; }
+    label { font-weight: 700; display: block; margin-bottom: 6px; }
+    select { font: inherit; width: 100%; padding: 12px; border: 2px solid #2e3a59; border-radius: 10px; background: #fff; }
+    .muted { color: #4a4f5a; font-size: 16px; }
+    .done { border-left: 6px solid #1b5e20; }
+  </style>
+</head>
+<body>
+  <div class="notice" role="note">Página fictícia para testes do CitizenTech. Nenhum agendamento real é feito e nenhum dado é enviado.</div>
+  <header>
+    <h1>Portal de Demonstração</h1>
+    <p>Serviços de exemplo para treinar o uso do assistente</p>
+  </header>
+
+  <main>
+    <!-- 1. Início -->
+    <section id="tela-inicio" class="stack">
+      <h2>O que você precisa?</h2>
+      <button type="button" id="btn-agendamento">Agendamento</button>
+      <a href="#" id="link-consulta" onclick="return false;">Consultar solicitação</a>
+      <a href="#" id="link-duvidas" onclick="return false;">Dúvidas frequentes</a>
+    </section>
+
+    <!-- 2. Serviço -->
+    <section id="tela-servico" class="stack" hidden>
+      <h2>Escolha o serviço</h2>
+      <button type="button" id="btn-rg">Renovação de RG</button>
+      <button type="button" class="secondary" id="btn-outro">Segunda via de documento</button>
+      <button type="button" class="secondary" data-voltar="tela-inicio">Voltar</button>
+    </section>
+
+    <!-- 3. Local -->
+    <section id="tela-local" class="stack" hidden>
+      <h2>Onde você quer ser atendido?</h2>
+      <div>
+        <label for="municipio">Município</label>
+        <select id="municipio">
+          <option value="">Selecione</option>
+          <option>São Paulo</option>
+          <option>Campinas</option>
+          <option>Santos</option>
+        </select>
+      </div>
+      <p class="muted">A unidade de atendimento é escolhida automaticamente nesta demonstração.</p>
+      <button type="button" id="btn-continuar" disabled>Continuar</button>
+      <button type="button" class="secondary" data-voltar="tela-servico">Voltar</button>
+    </section>
+
+    <!-- 4. Horário -->
+    <section id="tela-horario" class="stack" hidden>
+      <h2>Escolha um horário</h2>
+      <button type="button" class="secondary horario" aria-pressed="false">Amanhã, 09:00</button>
+      <button type="button" class="secondary horario" aria-pressed="false">Amanhã, 14:30</button>
+      <button type="button" class="secondary horario" aria-pressed="false">Depois de amanhã, 10:15</button>
+      <button type="button" id="btn-confirmar" disabled>Confirmar agendamento</button>
+      <button type="button" class="secondary" data-voltar="tela-local">Voltar</button>
+    </section>
+
+    <!-- 5. Confirmação -->
+    <section id="tela-fim" class="stack done" hidden>
+      <h2>Agendamento simulado confirmado</h2>
+      <p id="resumo"></p>
+      <p class="muted">Isto é só um treino. Nenhum agendamento real foi feito.</p>
+      <button type="button" class="secondary" id="btn-recomecar">Recomeçar demonstração</button>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var telas = ['tela-inicio', 'tela-servico', 'tela-local', 'tela-horario', 'tela-fim'];
+      var escolha = { servico: '', municipio: '', horario: '' };
+
+      function mostrar(id) {
+        telas.forEach(function (t) { document.getElementById(t).hidden = (t !== id); });
+        window.scrollTo(0, 0);
+        var titulo = document.querySelector('#' + id + ' h2');
+        if (titulo) { titulo.setAttribute('tabindex', '-1'); titulo.focus({ preventScroll: true }); }
+      }
+
+      document.getElementById('btn-agendamento').addEventListener('click', function () { mostrar('tela-servico'); });
+
+      ['btn-rg', 'btn-outro'].forEach(function (id) {
+        document.getElementById(id).addEventListener('click', function (e) {
+          escolha.servico = e.currentTarget.textContent;
+          mostrar('tela-local');
+        });
+      });
+
+      var municipio = document.getElementById('municipio');
+      var continuar = document.getElementById('btn-continuar');
+      municipio.addEventListener('change', function () {
+        escolha.municipio = municipio.value;
+        continuar.disabled = !municipio.value;
+      });
+      continuar.addEventListener('click', function () { mostrar('tela-horario'); });
+
+      var confirmar = document.getElementById('btn-confirmar');
+      Array.prototype.forEach.call(document.querySelectorAll('.horario'), function (botao) {
+        botao.addEventListener('click', function () {
+          Array.prototype.forEach.call(document.querySelectorAll('.horario'), function (b) { b.setAttribute('aria-pressed', 'false'); });
+          botao.setAttribute('aria-pressed', 'true');
+          escolha.horario = botao.textContent;
+          confirmar.disabled = false;
+        });
+      });
+
+      confirmar.addEventListener('click', function () {
+        document.getElementById('resumo').textContent =
+          escolha.servico + ' em ' + escolha.municipio + ', ' + escolha.horario + '.';
+        mostrar('tela-fim');
+      });
+
+      Array.prototype.forEach.call(document.querySelectorAll('[data-voltar]'), function (b) {
+        b.addEventListener('click', function () { mostrar(b.getAttribute('data-voltar')); });
+      });
+
+      document.getElementById('btn-recomecar').addEventListener('click', function () {
+        escolha = { servico: '', municipio: '', horario: '' };
+        municipio.value = '';
+        continuar.disabled = true;
+        confirmar.disabled = true;
+        Array.prototype.forEach.call(document.querySelectorAll('.horario'), function (b) { b.setAttribute('aria-pressed', 'false'); });
+        mostrar('tela-inicio');
+      });
+    })();
+  </script>
+</body>
+</html>
