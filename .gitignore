@@ -5,8 +5,8 @@ web-build/
 expo-env.d.ts
 
 # Pastas nativas geradas por "npx expo prebuild" (o código nativo próprio fica em modules/)
-android/
-ios/
+/android/
+/ios/
 
 # Segredos e configuração local
 .env

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Acompanha somente o Chrome. Sem touch exploration e sem gestos:
+  o serviço nunca toca nem preenche nada pelo usuário.
+-->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+  android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged|typeViewScrolled|typeWindowsChanged"
+  android:accessibilityFeedbackType="feedbackGeneric"
+  android:accessibilityFlags="flagRetrieveInteractiveWindows|flagReportViewIds"
+  android:canRetrieveWindowContent="true"
+  android:canPerformGestures="false"
+  android:canRequestTouchExplorationMode="false"
+  android:description="@string/citizen_assist_service_description"
+  android:notificationTimeout="100"
+  android:packageNames="com.android.chrome" />

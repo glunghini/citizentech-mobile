@@ -1,0 +1,41 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- Android 11+: necessário para encontrar o motor de voz (TextToSpeech) e o reconhecimento de fala. -->
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.TTS_SERVICE" />
+    </intent>
+    <intent>
+      <action android:name="android.speech.action.RECOGNIZE_SPEECH" />
+    </intent>
+  </queries>
+
+  <application>
+    <!--
+      Serviço de acessibilidade. O usuário precisa ativá-lo manualmente em
+      Configurações > Acessibilidade; o app não consegue ativá-lo sozinho.
+      Ele só lê o conteúdo enquanto uma sessão de ajuda está ativa.
+    -->
+    <service
+      android:name="expo.modules.citizenassist.AssistAccessibilityService"
+      android:exported="true"
+      android:label="@string/citizen_assist_service_label"
+      android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+      <intent-filter>
+        <action android:name="android.accessibilityservice.AccessibilityService" />
+      </intent-filter>
+      <meta-data
+        android:name="android.accessibilityservice"
+        android:resource="@xml/citizen_assist_service" />
+    </service>
+
+    <!-- Caixa curta para responder a uma pergunta do assistente (ação "ask"). -->
+    <activity
+      android:name="expo.modules.citizenassist.ClarifyActivity"
+      android:exported="false"
+      android:excludeFromRecents="true"
+      android:taskAffinity=""
+      android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
+      android:windowSoftInputMode="adjustResize" />
+  </application>
+</manifest>

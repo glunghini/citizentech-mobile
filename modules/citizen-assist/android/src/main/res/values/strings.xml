@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="citizen_assist_service_label">CitizenTech Assistente</string>
+  <string name="citizen_assist_service_description">Durante uma ajuda iniciada por você, o assistente lê os textos e botões da página aberta no Chrome para mostrar onde tocar e falar o próximo passo. Ele não lê o que você digita em campos, não toca na tela por você e para de ler quando você toca em Encerrar.</string>
+</resources>
