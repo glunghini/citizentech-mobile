@@ -6,24 +6,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "platforms": [
-      "android"
-    ],
+    "platforms": ["android"],
     "android": {
       "package": "br.com.fiap.citizentech.assistente"
     },
-    "plugins": [
-      "expo-router"
-    ],
-    "extra": {
-      "router": {
-        "asyncRoutes": {
-          "web": true
-        }
-      },
-      "eas": {
-        "projectId": "a03e8422-9abd-457a-b764-879a4677b7e0"
-      }
-    }
+    "plugins": ["expo-router"]
   }
 }
