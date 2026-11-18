@@ -4,7 +4,7 @@ Assistente que ajuda pessoas idosas e pessoas com dificuldade em tecnologia a us
 A pessoa diz o que quer fazer. O assistente lê os elementos da página, **contorna o botão certo** e **fala a instrução**.
 Quem toca e preenche é sempre a própria pessoa: o app nunca clica por ela.
 
-> Os campos marcados como **PENDENTE** ainda precisam ser preenchidos pelo grupo, apenas com informações confirmadas.
+**Vídeo do app rodando (1 min 8 s):** <https://youtube.com/shorts/Zq5ZBuCQdcU>
 
 ---
 
@@ -12,22 +12,27 @@ Quem toca e preenche é sempre a própria pessoa: o app nunca clica por ela.
 
 | Item | Conteúdo |
 | --- | --- |
-| Nome da CitizenTech | CitizenTech Assistente *(PENDENTE: confirmar o nome do grupo)* |
-| Cidade e bairro | **PENDENTE** |
+| Nome da CitizenTech | CitizenTech Assistente |
+| Cidade e bairro | São Paulo (SP), Bela Vista |
 | Cidadão beneficiado | Pessoas idosas e pessoas com dificuldade em usar serviços digitais no celular |
 | Problema, em uma frase | Muita gente não consegue concluir sozinha um serviço em um site porque não sabe onde tocar nem qual é o próximo passo. |
-| Como funciona | O app desenha um painel por cima do Chrome. A cada “Próximo passo”, lê a página, pede a orientação (API ou modo de teste), contorna o elemento certo e fala a instrução em português. |
+| Como funciona | O app desenha um painel por cima do Chrome. A cada “Próximo passo”, lê a página, pede a orientação (modo de teste ou API), contorna o elemento certo e fala a instrução em português. |
 | O que cada parte faz | **App (este repositório):** telas, permissões, leitura da tela, destaque, voz e histórico no Firebase. **API (opcional, modo real):** recebe a leitura da página e devolve a orientação no contrato v1. |
-| Link do repositório | **PENDENTE** |
-| Link da API | **PENDENTE** (só para o modo real) |
-| Indicador de impacto | *Sugestão, confirmar com o grupo:* % de ajudas que chegam à etapa “concluída” e nº médio de passos por ajuda, calculados a partir do histórico salvo. **Resultados: PENDENTES** (validação com usuários ainda não feita). |
-| ODS conectados | *Confirmar com o grupo:* **ODS 10** (Redução das desigualdades): reduz a exclusão digital de quem tem menos familiaridade com tecnologia. **ODS 11** (Cidades e comunidades sustentáveis): facilita o acesso a serviços da cidade. |
+| Link do repositório | <https://github.com/glunghini/citizentech-mobile> |
+| Página de demonstração | <https://glunghini.github.io/citizentech-mobile/demo/> (fictícia) |
+| Link da API | Não usada nesta entrega: o app roda em **modo de teste** (respostas simuladas). |
+| Indicador de impacto | % de ajudas que chegam à etapa “concluída” e nº médio de passos por ajuda, calculados a partir do histórico salvo. Ainda sem medição com usuários reais: nesta entrega houve apenas o teste do próprio grupo na página de demonstração. |
+| ODS conectados | **ODS 10** (Redução das desigualdades): reduz a exclusão digital de quem tem menos familiaridade com tecnologia. **ODS 11** (Cidades e comunidades sustentáveis): facilita o acesso a serviços da cidade. |
 
 ## 2. Integrantes
 
 | Nome | RM | Responsabilidade |
 | --- | --- | --- |
-| PENDENTE | PENDENTE | PENDENTE |
+| David Alexandre Cordeiro Paixão | 557538 | Desenvolvimento do app mobile |
+| Guilherme Lunghini Teixeira | 556892 | Desenvolvimento do app mobile |
+| Marchel Augusto Ribeiro de Matos | 99856 | Desenvolvimento do app mobile |
+| Tiago Morais Neto | 555619 | Desenvolvimento do app mobile |
+| Vinicius Augusto Siqueira Gonçalves | 557065 | Desenvolvimento do app mobile |
 
 ## 3. Telas e navegação (Expo Router)
 
@@ -41,15 +46,15 @@ Quem toca e preenche é sempre a própria pessoa: o app nunca clica por ela.
 | *(sobre o Chrome)* | Painel flutuante | Mensagem + **Próximo passo** + **Encerrar** (+ **Responder** quando o assistente faz uma pergunta). |
 | *(sobre o Chrome)* | Caixa de resposta | Activity curta para responder por texto ou fala quando a ação é `ask`. |
 
-**Prints:** coloque as imagens em `docs/prints/` (apenas dados fictícios) e troque as linhas abaixo.
+### Prints (celular Android real, dados fictícios)
 
-- `docs/prints/01-inicio.png`: **PENDENTE**
-- `docs/prints/02-permissoes.png`: **PENDENTE**
-- `docs/prints/03-painel-sobre-chrome.png`: **PENDENTE**
-- `docs/prints/04-destaque.png`: **PENDENTE**
-- `docs/prints/05-historico.png`: **PENDENTE**
-- `docs/prints/06-detalhe.png`: **PENDENTE**
-- `docs/prints/07-firestore-console.png`: **PENDENTE** (evidência do banco)
+| Tela inicial | Serviço de acessibilidade ativado |
+| --- | --- |
+| <img src="docs/prints/01-inicio.jpg" width="260" alt="Tela inicial com permissões ativadas e objetivo escrito"> | <img src="docs/prints/02-acessibilidade-ativada.jpg" width="260" alt="Serviço CitizenTech Assistente ativado nas configurações de acessibilidade"> |
+
+| Painel sobre o Chrome | Destaque no botão certo |
+| --- | --- |
+| <img src="docs/prints/03-painel-sobre-chrome.jpg" width="260" alt="Painel do assistente por cima da página de demonstração no Chrome"> | <img src="docs/prints/04-destaque.jpg" width="260" alt="Botão Agendamento contornado em laranja com a instrução no painel"> |
 
 ## 4. Tecnologias e versões
 
@@ -61,96 +66,81 @@ Quem toca e preenche é sempre a própria pessoa: o app nunca clica por ela.
 | Banco de dados | Firebase JS SDK `^12.19.0`: Cloud Firestore + Authentication anônima |
 | Código nativo | Módulo Expo local em Kotlin (`modules/citizen-assist`) |
 | Voz | `TextToSpeech` do Android (pt-BR) e reconhecimento de fala do sistema |
-| Aparelho / Android / Chrome usados nos testes | **PENDENTE** |
-
-Se o `npm install` reclamar de versão, rode `npx expo install --fix`: ele ajusta tudo para o SDK 58.
+| Build | EAS Build (plano gratuito), perfil `preview`, APK de release |
+| Aparelho usado nos testes | Celular Samsung com Android e Google Chrome |
 
 ## 5. Custo: 100% gratuito
 
 | Parte | Como fica de graça |
 | --- | --- |
-| Build do app | `npx expo run:android` e Gradle no próprio computador (Android Studio é gratuito). Não precisa de EAS pago. |
-| Banco | Firebase no plano **Spark** (gratuito). Não use Cloud Functions, que exigem o plano pago. |
+| Build do app | EAS Build no plano Free (fila de baixa prioridade). Também dá para compilar no próprio computador com Android Studio. |
+| Banco | Firebase no plano **Spark** (gratuito). Não usa Cloud Functions, que exigem o plano pago. |
 | Página de demonstração | GitHub Pages (gratuito), pasta `docs/`. |
-| Orientações | Modo **mock** roda no celular, sem servidor. O modo **real** usa uma API própria; rodá-la no computador na mesma rede Wi-Fi não custa nada. |
+| Orientações | Modo **mock** roda no celular, sem servidor. |
 | Voz | Recursos do próprio Android. |
 
-## 6. Como rodar (development build)
+## 6. Como rodar
 
-> **Expo Go não funciona** com este projeto: ele não carrega o código nativo (serviço de acessibilidade e overlay). Use o development build.
+> **Expo Go não funciona** com este projeto: ele não carrega o código nativo (serviço de acessibilidade e overlay).
 
-### 6.1 Pré-requisitos (grátis)
-
-- Node.js LTS, JDK 17 e Android Studio (SDK Android + `adb`).
-- Celular Android com **Depuração USB** ligada e o **Chrome** instalado.
-
-### 6.2 Firebase (uma vez)
+### 6.1 Firebase (uma vez)
 
 1. Em <https://console.firebase.google.com>, crie um projeto (plano Spark).
 2. **Authentication** → Método de login → ative **Anônimo**.
 3. **Firestore Database** → Criar banco (modo produção) → aba **Regras** → cole o conteúdo de [`firestore.rules`](firestore.rules) → Publicar.
 4. **Configurações do projeto** → Seus apps → adicione um **App da Web** e copie os valores de `firebaseConfig` para o `.env`.
 
-### 6.3 Configuração local
+### 6.2 Configuração local
+
+Requer Node.js **22.13 ou mais novo**.
 
 ```bash
 npm install
 cp .env.example .env     # no Windows: copy .env.example .env
-# edite o .env (modo mock/real, baseUrl, demo e Firebase)
 ```
 
 | Variável | Uso |
 | --- | --- |
 | `EXPO_PUBLIC_GUIDANCE_MODE` | `mock` (respostas simuladas) ou `real` (API HTTP) |
-| `EXPO_PUBLIC_API_BASE_URL` | Raiz do servidor **sem** `/api/v1`. No celular físico, use o IP do computador (ex.: `http://192.168.0.10:5000`), nunca `localhost`. |
-| `EXPO_PUBLIC_DEMO_URL` | Endereço da página de demonstração (opcional) |
+| `EXPO_PUBLIC_API_BASE_URL` | Raiz do servidor **sem** `/api/v1`, só no modo real. Nunca `localhost`: no emulador use `10.0.2.2`; no celular, o IP do computador na mesma rede. |
+| `EXPO_PUBLIC_DEMO_URL` | Endereço da página de demonstração |
 | `EXPO_PUBLIC_FIREBASE_*` | Configuração do app Web do Firebase |
 
-Tudo que começa com `EXPO_PUBLIC_` vai dentro do APK. **Nunca** coloque chave do Gemini, senha de banco ou segredo de servidor no `.env` do app.
+Tudo que começa com `EXPO_PUBLIC_` vai dentro do APK. **Nunca** coloque chave de IA, senha de banco ou segredo de servidor no `.env` do app.
 
-### 6.4 Instalar e abrir
+### 6.3 Gerar o APK na nuvem (caminho usado nesta entrega)
 
 ```bash
-npx expo run:android      # gera a pasta android/, compila e instala no celular conectado
+npx eas-cli@latest login
+npx eas-cli@latest build -p android --profile preview
 ```
 
-Depois de mudar algo em `modules/citizen-assist` (Kotlin, manifesto ou recursos), rode `npx expo run:android` de novo. Para refazer a pasta nativa do zero: `npx expo prebuild --platform android --clean`. A pasta `android/` é gerada e fica fora do Git: todo o código nativo próprio está em `modules/`, então nada se perde ao regenerar.
+- O perfil `preview` está em [`eas.json`](eas.json) e gera um **APK de release** com o JavaScript embutido (não depende do Metro).
+- O arquivo [`.easignore`](.easignore) define o que **não** sobe para o build. Ele existe porque o `.gitignore` ignora o `.env`; sem o `.easignore`, o APK sairia sem a configuração do Firebase. As regras `/android/` e `/ios/` têm barra no começo para ignorar só as pastas geradas na raiz, e **não** `modules/citizen-assist/android`, onde está o código Kotlin.
+- No fim, o EAS mostra um link/QR code para baixar o APK no celular.
 
-### 6.5 Permissão de acessibilidade
+**Instalar no celular (Android 13+):**
 
-No app, toque em **Ativar leitura da tela** → **Abrir configurações** → *Apps instalados / Serviços baixados* → **CitizenTech Assistente** → ativar.
+1. Se o **Google Play Protect** bloquear a instalação (ele bloqueia apps fora da loja que usam acessibilidade): Play Store → foto do perfil → Play Protect → engrenagem → desligue a verificação, instale e **ligue de novo**.
+2. Ao tentar ativar a acessibilidade, o Android mostra “Acesso negado / configuração restrita”. Abra **Configurações → Aplicativos → CitizenTech Assistente → ⋮ → Permitir configurações restritas** e ative de novo em **Acessibilidade → Aplicativos instalados → CitizenTech Assistente**.
 
-No **Android 13+**, quando o app é instalado por arquivo APK, a opção pode aparecer bloqueada. Abra Configurações → Apps → CitizenTech Assistente → menu ⋮ → **Permitir configurações restritas** e tente de novo. Instalar com `adb` (como faz o `expo run:android`) normalmente não tem esse bloqueio.
+### 6.4 Alternativa: development build local (não usada nesta entrega)
 
-O app **não pede** permissão de microfone nem de “sobrepor a outros apps”. A fala usa o reconhecedor do sistema, e o painel é um overlay do próprio serviço de acessibilidade.
+Com Android Studio (SDK + emulador com imagem Google Play) e JDK configurados: `npx expo run:android`. Depois de mudar algo em `modules/citizen-assist`, rode o comando de novo. A pasta `android/` é gerada e fica fora do Git; todo o código nativo próprio está em `modules/`.
 
-### 6.6 Página de demonstração
+### 6.5 Página de demonstração
 
-A página fictícia fica em [`docs/demo/index.html`](docs/demo/index.html). Ela simula: Agendamento → Renovação de RG → Município → horário → confirmação.
+A página fictícia fica em [`docs/demo/index.html`](docs/demo/index.html) e está publicada pelo GitHub Pages (*Settings → Pages → `main` / `/docs`*). Ela simula: Agendamento → Renovação de RG → Município → horário → confirmação.
 
-Para publicar de graça: GitHub → *Settings* → *Pages* → *Deploy from a branch* → `main` / pasta `/docs`. O endereço fica `https://SEU-USUARIO.github.io/SEU-REPOSITORIO/demo/`. Coloque esse endereço em `EXPO_PUBLIC_DEMO_URL`.
-
-### 6.7 Usando
+### 6.6 Usando
 
 1. No app, escreva ou fale o objetivo (ex.: “Quero agendar a renovação do meu RG”) e toque em **Iniciar ajuda**.
 2. Abra a página no **Chrome**. O painel aparece por cima.
 3. Toque em **Próximo passo**: o assistente lê a página, contorna o elemento e fala.
 4. Toque você mesmo no elemento e peça o próximo passo.
-5. **Encerrar** (no painel ou no app) para a voz, apaga o destaque e salva o resumo no Firestore.
+5. **Encerrar** (no painel ou no app) para a voz, apaga o destaque e envia o resumo para o Firestore.
 
-## 7. APK final (sem Metro)
-
-```bash
-npx expo prebuild --platform android --clean
-cd android
-./gradlew assembleRelease          # Windows: gradlew.bat assembleRelease
-```
-
-O APK sai em `android/app/build/outputs/apk/release/app-release.apk`, com o JavaScript embutido. Ele usa o `.env` que existir no momento do build e, pelo modelo padrão do Expo, vem assinado com a chave de debug (serve para demonstração, não para a Play Store).
-
-**Modo real no APK:** o build de release bloqueia `http://`. Use uma API em **HTTPS**. Uma opção gratuita para a API do computador é um túnel temporário (por exemplo, `cloudflared tunnel --url http://localhost:5000`), que gera um endereço `https://...trycloudflare.com`. Em debug, `http://` funciona para testes na rede local.
-
-## 8. Fluxo e contrato v1
+## 7. Fluxo e contrato v1
 
 ```mermaid
 sequenceDiagram
@@ -173,17 +163,17 @@ sequenceDiagram
 
 - **Endpoint:** `POST {baseUrl}/api/v1/guidance` com `contractVersion "1"`, `requestId`/`sessionId`/`snapshotId` (UUID), `locale "pt-BR"`, `goal`, `userMessage`, `history` (últimas 3 orientações) e `screen.elements[]` (`id`, `role`, `text`, `enabled`).
 - **Ações aceitas:** `highlight` (com alvo habilitado do snapshot atual), `explain`, `ask` e `complete` (todas sem alvo). Qualquer outra resposta é recusada **sem destaque e sem fala**.
-- **Erros tratados:** 400, 409 (*“Esta solicitação já foi registrada. Peça uma nova orientação.”*), 413, 429, 502, 503 (*“Não consegui registrar esta orientação. Tente novamente.”*), 504, 500, respostas sem JSON (HTML de proxy), falta de internet, DNS/TLS e timeout de 25 s. Nunca há nova tentativa automática: a pessoa toca de novo.
-- **Mock:** usa o mesmo caminho da chamada HTTP (mesma requisição e mesma validação), espera ~500 ms e responde no formato v1. Destaca “Agendamento” pelo ID real e também conhece as telas da página de demonstração. **Não é IA**, e o app avisa “Modo de teste” no painel e na tela inicial.
-- Uma só chamada por toque, o botão fica bloqueado enquanto espera, e **Encerrar** cancela a chamada e ignora respostas atrasadas.
+- **Erros tratados:** 400, 409, 413, 429, 502, 503, 504, 500, respostas sem JSON, falta de internet, DNS/TLS e timeout de 25 s. Nunca há nova tentativa automática: a pessoa toca de novo.
+- **Mock:** usa o mesmo caminho da chamada HTTP (mesma requisição e mesma validação), espera ~500 ms e responde no formato v1. Conhece as telas da página de demonstração. **Não é IA**, e o painel avisa “Modo de teste: respostas simuladas, sem IA”.
+- Uma só chamada por toque; o botão fica bloqueado enquanto espera; **Encerrar** cancela a chamada e ignora respostas atrasadas.
 
-## 9. Banco de dados (Cloud Firestore)
+## 8. Banco de dados (Cloud Firestore)
 
 Cada ajuda encerrada vira um documento em `sessions/{sessionId}`:
 
 | Campo | Conteúdo |
 | --- | --- |
-| `sessionId` | UUID da ajuda (o mesmo enviado à API) |
+| `sessionId` | UUID da ajuda |
 | `uid` | Usuário anônimo do Firebase (cada aparelho só vê o próprio histórico) |
 | `goal` | Objetivo digitado/falado (orientamos a não usar dados pessoais) |
 | `mode` | `mock` ou `real` |
@@ -193,67 +183,65 @@ Cada ajuda encerrada vira um documento em `sessions/{sessionId}`:
 | `steps[]` | `requestId`, `at`, `action`, `instruction`, `result` (`success`/`failure`/`discarded`), `errorCode` |
 | `savedAt` | Data do servidor |
 
-**Não** são salvos: textos da página, elementos, coordenadas, valores digitados, senhas ou capturas de tela.
+**Não** são salvos: textos da página, elementos, coordenadas, valores digitados, senhas ou capturas de tela. Se a gravação falhar, o resumo fica pendente e é reenviado quando o app volta ao primeiro plano. As regras de acesso estão em [`firestore.rules`](firestore.rules).
 
-Se a gravação falhar (sem internet, Firebase não configurado), o resumo fica pendente e é reenviado quando o app volta ao primeiro plano.
+**Situação:** a gravação está implementada, mas **não foi comprovada** nos testes desta entrega. Na conferência de 17/11/2026, a coleção `sessions` do Firestore estava vazia (ver seção 10).
 
-**Evidência (PENDENTE):** print do console do Firestore mostrando o documento com o mesmo `sessionId` e os `requestId` exibidos na tela *Detalhes da ajuda* do app.
-
-## 10. Acessibilidade do próprio app
+## 9. Acessibilidade do próprio app
 
 - Fontes de 20 a 26 sp, que acompanham o tamanho de fonte do sistema, e botões com 56 a 60 dp de altura.
 - Alto contraste: texto escuro em fundo claro e botões azul-escuro ou vermelho-escuro com texto branco. O destaque é laranja com borda branca.
 - `accessibilityRole`, `accessibilityLabel`, `accessibilityHint` e estado *desativado* em todos os botões, além de títulos marcados como cabeçalho.
-- O objetivo pode ser **falado** ou digitado, e as orientações são **faladas** e escritas (se a voz falhar, o texto continua).
+- O objetivo pode ser **falado** ou digitado, e as orientações são **faladas** e escritas.
 - Linguagem simples e uma instrução por vez. O painel muda para o alto da tela quando o elemento destacado está embaixo.
 
-## 11. Privacidade e segurança
+## 10. O que foi e o que não foi testado
 
-- O serviço acompanha só o pacote `com.android.chrome` e só lê enquanto a ajuda está ativa. Fora disso, ignora tudo.
+| Item | Situação |
+| --- | --- |
+| APK de release gerado pelo EAS Build, instalado em celular Samsung (sem Metro) | ✅ |
+| Serviço de acessibilidade ativado pelo usuário | ✅ print 02 |
+| Objetivo falado pelo reconhecimento de voz do Google | ✅ vídeo |
+| Painel “Próximo passo / Encerrar” sobre o Chrome, sem bloquear os toques na página | ✅ prints 03–04 e vídeo |
+| Jornada completa na página de demonstração: Agendamento → Renovação de RG → Município → horário → Confirmar → mensagem de conclusão | ✅ vídeo |
+| Destaque some e o painel avisa “A página mudou” quando a página muda | ✅ vídeo |
+| Modo de teste identificado no painel | ✅ print 03 |
+| Voz lendo as instruções (TextToSpeech) | ✅ vídeo: há fala logo após cada “Próximo passo” |
+| Validação do contrato v1 e regras do mock | ✅ 38 verificações automatizadas em JVM (`tests/jvm/`) |
+| Gravação no Firestore e tela Histórico | ❌ não comprovado (coleção vazia na conferência) |
+| Modo real com API | ❌ não testado |
+| Emulador / `npx expo run:android` | ❌ não testado (o caminho usado foi o EAS Build) |
+
+## 11. Limitações conhecidas
+
+- Android + Chrome apenas, testado em um único celular. Não há garantia para outros sites ou navegadores.
+- A gravação no Firestore não foi comprovada nesta entrega (seção 8).
+- Logo depois de uma mudança de página, o contorno antigo pode aparecer por um instante na posição anterior até ser removido.
+- O painel ocupa a parte de baixo (ou de cima) da tela e pode cobrir parte da página.
+- Sites com animação contínua podem nunca “estabilizar”: o assistente pede para tentar de novo em vez de apontar.
+- O mock só conhece a página de demonstração. Em outros sites ele responde “Esta é uma resposta de teste…”.
+- Instalar fora da Play Store exige liberar o Play Protect e as configurações restritas (seção 6.3).
+- Sem captura de tela/OCR: se a árvore de acessibilidade não servir para um site, o assistente não consegue orientar.
+
+## 12. Privacidade e segurança
+
+- O serviço acompanha só o pacote `com.android.chrome` e só lê enquanto a ajuda está ativa.
 - Para campos, envia apenas o rótulo (nunca o texto digitado nem a opção escolhida). Senhas nunca são lidas.
 - Nenhum conteúdo de tela vai para logs ou para o banco.
 - Sem toque automático, sem gestos e sem touch exploration.
 - Bloquear a tela encerra a ajuda e limpa tudo.
 - Nenhuma chave de IA no app.
 
-## 12. O que foi e o que não foi testado
-
-| Item | Situação |
-| --- | --- |
-| Validação do contrato v1 e regras do mock | ✅ 38 verificações automatizadas em JVM (`tests/jvm/`), fora do Android, com um substituto do `org.json` |
-| Página de demonstração (fluxo completo e árvore de acessibilidade) | ✅ Testada em navegador headless (Chromium) |
-| Sintaxe dos arquivos TypeScript | ✅ |
-| Compilação Android (Gradle) e checagem de tipos completa | ❌ **PENDENTE** (fazer com `npx expo run:android` e `npm run typecheck`) |
-| Overlay sobre o Chrome, destaque, voz e leitura da tela no aparelho real | ❌ **PENDENTE** |
-| Gravação no Firestore | ❌ **PENDENTE** |
-| Modo real com API | ❌ **PENDENTE** |
-| APK de release sem Metro | ❌ **PENDENTE** |
-
-Atualize esta tabela depois dos testes no aparelho. Simulador, preview web ou um desenho dentro da própria tela do app **não** comprovam o overlay sobre o Chrome.
-
-## 13. Limitações conhecidas
-
-- Android + Chrome apenas, testado em um aparelho (**PENDENTE**: modelo/versões). Não há garantia para outros sites ou navegadores.
-- Sites com animação contínua podem nunca “estabilizar”: o assistente pede para tentar de novo em vez de apontar.
-- A forma como o Chrome expõe certos campos (por exemplo `<select>`) pode variar entre versões. Nesses casos o campo pode chegar sem rótulo.
-- O mock só conhece a página de demonstração. Em outros sites ele responde “Esta é uma resposta de teste…”.
-- Sem captura de tela/OCR: se a árvore de acessibilidade não servir para um site, isso deve ser registrado aqui.
-
-## 14. Vídeo (até 3 minutos)
-
-**PENDENTE:** link do YouTube (não listado).
-
-Roteiro sugerido: problema e público (20 s) → permissões e objetivo falado (30 s) → painel sobre o Chrome, destaque e voz em 3 a 5 passos (90 s) → histórico no app + documento no console do Firestore (30 s).
-
-## 15. Estrutura
+## 13. Estrutura
 
 ```
 app/                      telas (Expo Router)
 src/                      contexto do assistente, Firebase, Firestore, componentes de UI
 modules/citizen-assist/   módulo Expo local (Kotlin): serviço, leitura, overlay, voz, HTTP e mock
 docs/demo/                página fictícia de demonstração (GitHub Pages)
-docs/prints/              prints para este README
+docs/prints/              prints deste README
 tests/jvm/                testes do contrato v1 e do mock (JVM)
+eas.json, .easignore      configuração do build na nuvem
 firestore.rules           regras do banco
 prompts.md                registro do uso de IA (exigido pela GS)
 ```

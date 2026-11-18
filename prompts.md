@@ -12,6 +12,17 @@ Este arquivo registra o que foi pedido à IA (Claude) na criação da base deste
 | 3 | “Cada projeto é meio que independente, então faremos nosso próprio banco de dados e nossas próprias coisas… o que temos que focar é seguir a mesma ideia que está descrita no md” | Perguntas de escopo. Respostas da equipe: banco **Firebase Firestore**; orientações por **mock + API, com chave de configuração**; **começar do zero**; **projeto 100% gratuito**. |
 | 4 | (continuação) Geração do projeto | Projeto Expo (SDK 58) com Expo Router, módulo nativo Kotlin (serviço de acessibilidade, leitura da tela, overlay, voz, cliente HTTP v1 e mock), Firestore com login anônimo e regras, página de demonstração, testes do contrato e este README. |
 
+## Sessão de 17/11/2026 (noite): build, correções e documentação
+
+| # | Prompt (resumo fiel) | O que a IA entregou |
+| --- | --- | --- |
+| 5 | “Faça um passo a passo de como fazer tudo certinho para eu apenas enviar o link do repositório” | Guia em etapas: ferramentas, Firebase, GitHub Pages, build, testes, prints, vídeo e envio. |
+| 6 | Erros do `npm install` / `npx expo install --fix` (Node 22.9 e conflito `react-dom`) | Atualização do Node e `react-dom` fixado em 19.3.0. |
+| 7 | “Não tem outra forma sem ser por emulador?” | Build na nuvem com EAS (gratuito), `eas.json` e `.easignore`. |
+| 8 | App abriu como “Versão incompleta”; logs do EAS com `Unresolved reference 'Queues'` | `.gitignore`/`.easignore` corrigidos (`/android/`), e `CitizenAssistModule.kt` sem a API `Queues`. |
+| 9 | Play Protect e “Acesso negado” na acessibilidade | Passos para instalar e liberar as configurações restritas. |
+| 10 | Prints, vídeo e “arrume o README” | README com prints, vídeo e a tabela do que foi e não foi testado. |
+
 ## Pontos que a equipe deve saber explicar
 
 - Por que o ciclo de orientação roda no Kotlin (`AssistAccessibilityService`) e não em um timer do JavaScript.
